@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Content Table</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Table rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <button id="showFormBtn">NEW BOOK</button>
+    <div id="formContainer">
+      <form id="userForm">
+        <label for="author">Author:</label>
+        <input type="text" id="author" required />
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" required />
+
+        <label for="pages">Number of Pages:</label>
+        <input type="number" id="pages" required />
+
+        <label for="read">Have you read the book?</label>
+        <input type="checkbox" id="read" value="read" />
+
+        <label for="notRead">Have you not read the book?</label>
+        <input type="checkbox" id="notRead" value="notRead" />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
