@@ -12,26 +12,33 @@ function displayTable() {
 
   // Loop through the array
   for (let i = 0; i < myLibrary.length; i++) {
-    const obj = myLibrary[i]
+    const obj = myLibrary[i];
     // Create a new table row (tr element)
     const tableRow = document.createElement("tr");
 
     // Create and populate the cells (td elements) with item data
     const titleCell = document.createElement("td");
-    titleCell.textContent = obj.author;
+    titleCell.textContent = obj.Author;
 
-    const contentCell = document.createElement("td");
-    contentCell.textContent = obj.title;
+    const authorCell = document.createElement("td");
+    authorCell.textContent = obj.Title;
+
+    const pagesCell = document.createElement("td");
+    pagesCell.textContent = obj.Pages;
+
+    const readCell = document.createElement("td");
+    readCell.textContent = obj.Read;
 
     // Append cells to the row
     tableRow.appendChild(titleCell);
-    tableRow.appendChild(contentCell);
+    tableRow.appendChild(authorCell);
+    tableRow.appendChild(pagesCell);
+    tableRow.appendChild(readCell);
 
     // Append the row to the table body
     tableBody.appendChild(tableRow);
   }
 }
-
 
 const showFormBtn = document.getElementById("showFormBtn");
 const formContainer = document.getElementById("formContainer");
@@ -51,26 +58,36 @@ userForm.addEventListener("submit", (event) => {
   const pages = document.getElementById("pages").value;
   const readCheckbox = document.getElementById("read");
 
-  const isRead = ()=> {
+  const isRead = () => {
     if (readCheckbox.checked) {
       return "Read";
     } else {
       return "Not read";
     }
-  }
-
+  };
 
   // Do something with the form data (e.g., send it to the server)
   let bookObject = {
     Author: author,
     Title: title,
     Pages: pages,
-    Read: isRead()
-  }
+    Read: isRead(),
+  };
 
-myLibrary.push(bookObject);
-// // Call the function to display the table
-displayTable();
+  myLibrary.push(bookObject);
+
+  // Get the tbody element by its id
+  var tbody = document.getElementById("tableBody");
+
+  // Check if the tbody has content
+  if (tbody && tbody.childElementCount > 0) {
+    // Remove all rows from the tbody
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+  }
+  // // Call the function to display the table
+  displayTable();
 
   // Reset the form
   userForm.reset();
