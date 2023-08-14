@@ -13,6 +13,17 @@ function displayTable() {
   // Loop through the array
   for (let i = 0; i < myLibrary.length; i++) {
     const obj = myLibrary[i];
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
+
+    //Remove the book from the library
+    deleteButton.addEventListener("click", (event) => {
+      const row = event.target.closest("tr"); // Find the closest <tr> parent
+      if (row) {
+        row.remove(); // Remove the row from the table
+        myLibrary.shift(); //Remove the book from the array
+      }
+    });
     // Create a new table row (tr element)
     const tableRow = document.createElement("tr");
 
@@ -34,6 +45,7 @@ function displayTable() {
     tableRow.appendChild(authorCell);
     tableRow.appendChild(pagesCell);
     tableRow.appendChild(readCell);
+    tableRow.appendChild(deleteButton);
 
     // Append the row to the table body
     tableBody.appendChild(tableRow);
