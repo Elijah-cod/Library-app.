@@ -49,6 +49,37 @@ function displayTable() {
 
     // Append the row to the table body
     tableBody.appendChild(tableRow);
+
+    
+    readCell.addEventListener("click", ()=>{
+        // Get the current cell content
+        var currentContent = readCell.innerHTML;
+    
+        // Create an input field and set its value to the current content
+        var input = document.createElement("input");
+        input.type = "text";
+        input.value = currentContent;
+        // Replace the cell content with the input field
+      readCell.innerHTML = "";
+      readCell.appendChild(input);
+  
+      // Focus on the input field
+      input.focus();
+  
+      // Add an event listener to the input field to capture the new content
+    input.addEventListener("blur", function() {
+      // Get the new content from the input field
+      var newContent = input.value;
+      
+      // Update the cell with the new content
+      readCell.innerHTML = newContent;
+      // Find the index of the person you want to edit
+      let personIndex = i; 
+      // Update the read status in the array
+      myLibrary[personIndex].Read = newContent;
+    })
+
+    })
   }
 }
 
@@ -100,6 +131,8 @@ userForm.addEventListener("submit", (event) => {
   }
   // // Call the function to display the table
   displayTable();
+
+  
 
   // Reset the form
   userForm.reset();
